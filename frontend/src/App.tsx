@@ -1,2 +1,9 @@
-const App = () => (<h1>Welcome to 1 Retail</h1>);
+import SignUp from "./components/SignUp";
+const App = () => {
+    return (
+        <>
+        <SignUp />
+        </>
+    )
+};
 export default App;

@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "prepare": "husky"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@apollo/client": "^4.0.9",
@@ -16,11 +15,13 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.5",
     "@reduxjs/toolkit": "^2.10.1",
+    "formik": "^2.4.9",
     "graphql": "^16.12.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
@@ -34,7 +35,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "husky": "^9.1.7",
     "jsdom": "^27.2.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
