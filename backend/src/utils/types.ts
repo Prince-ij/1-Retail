@@ -1,11 +1,11 @@
 export interface Product {
   id: string;
   name: string;
-  description?: string;
-  size?: string;
+  description?: string | undefined;
+  size?: string | undefined;
   price: number;
   cost: number;
-  supplier?: string;
+  supplier?: string | undefined;
   stock: number;
 }
 
