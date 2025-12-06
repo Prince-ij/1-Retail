@@ -1,9 +1,9 @@
-import SignUp from "./components/SignUp";
+import Home from "./components/Authentication";
 const App = () => {
-    return (
-        <>
-        <SignUp />
-        </>
-    )
+  return (
+    <>
+      <Home />
+    </>
+  );
 };
 export default App;

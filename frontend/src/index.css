@@ -1,0 +1,25 @@
+header, footer {
+  background-image: url("./assets/images/headerBg.jpg");
+  background-size: cover;
+}
+
+
+header > h1,
+h2 {
+  font-family: "Merriweather", serif;
+}
+
+.about {
+  background-image: url("./assets/images/aboutBg.jpg");
+}
+
+.features {
+  background-image: url("./assets/images/featureBg.jpg");
+  background-blend-mode: lighten;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  text-align: justify;
+}
