@@ -1,16 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-interface IProduct extends Document {
-  name: string;
-  description?: string;
-  size?: string;
-  price: number;
-  cost: number;
-  supplier?: string;
-  stock: number;
-}
-
-const schema = new Schema<IProduct>({
+const schema = new Schema({
   name: {
     type: String,
     required: true,
@@ -35,14 +25,4 @@ const schema = new Schema<IProduct>({
   },
 });
 
-schema.set("toJSON", {
-  transform: function (_doc, returnedObject) {
-    const obj = returnedObject as unknown as Record<string, unknown>;
-    obj["id"] = obj["_id"];
-    delete obj["_id"];
-    delete obj["__v"];
-    return obj;
-  },
-});
-
-export default mongoose.model<IProduct>("Product", schema);
+export default mongoose.model("Product", schema);

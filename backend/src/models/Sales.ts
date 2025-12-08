@@ -1,16 +1,7 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import Product from "./Product.js";
 
-interface ISale extends Document {
-  product: mongoose.Types.ObjectId;
-  buyer: string;
-  date: Date;
-  quantity: number;
-  totalPrice: number;
-  receiptId: string;
-}
-
-const schema = new Schema<ISale>({
+const schema = new Schema({
   product: { type: Schema.Types.ObjectId, ref: "Products" },
   buyer: {
     type: String,
@@ -21,6 +12,7 @@ const schema = new Schema<ISale>({
   quantity: {
     type: Number,
     min: 1,
+    default: 0,
   },
   totalPrice: { type: Number },
   receiptId: { type: String, default: () => crypto.randomUUID(), unique: true },
@@ -35,14 +27,4 @@ schema.pre("save", async function () {
   }
 });
 
-schema.set("toJSON", {
-  transform: function (_doc, returnedObject) {
-    const obj = returnedObject as unknown as Record<string, unknown>;
-    obj["id"] = obj["_id"];
-    delete obj["_id"];
-    delete obj["__v"];
-    return obj;
-  },
-});
-
-export default mongoose.model<ISale>("Sale", schema);
+export default mongoose.model("Sale", schema);

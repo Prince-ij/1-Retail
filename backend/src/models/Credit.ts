@@ -1,18 +1,7 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import Product from "./Product.js";
 
-interface ICredit extends Document {
-  product: mongoose.Types.ObjectId;
-  buyer: string;
-  date: Date;
-  quantity: number;
-  amountPaid: number;
-  totalDebt: number;
-  status: "settled" | "pending";
-  receiptId: string;
-}
-
-const schema = new Schema<ICredit>({
+const schema = new Schema({
   product: { type: Schema.Types.ObjectId, ref: "Products" },
   buyer: {
     type: String,
@@ -24,6 +13,7 @@ const schema = new Schema<ICredit>({
   quantity: {
     type: Number,
     min: 1,
+    default: 0,
   },
   amountPaid: {
     type: Number,
@@ -47,14 +37,4 @@ schema.pre("save", async function () {
   }
 });
 
-schema.set("toJSON", {
-  transform: function (_doc, returnedObject) {
-    const obj = returnedObject as unknown as Record<string, unknown>;
-    obj["id"] = obj["_id"];
-    delete obj["_id"];
-    delete obj["__v"];
-    return obj;
-  },
-});
-
-export default mongoose.model<ICredit>("Credit", schema);
+export default mongoose.model("Credit", schema);

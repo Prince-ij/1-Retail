@@ -1,12 +1,9 @@
-import express from "express";
+import app from "./app.js";
+import logger from "./utils/logger.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-const app = express();
 const PORT = 3001;
-
-app.get("/ping", (_req, res) => {
-  res.send("pong");
-});
-
 app.listen(PORT, () => {
-  console.log(`server listening on http://localhost${PORT}`);
+  logger.info(`server listening on http://localhost${PORT}`);
 });
