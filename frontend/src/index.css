@@ -1,10 +1,68 @@
-header, footer {
+header,
+footer {
   background-image: url("./assets/images/headerBg.jpg");
   background-size: cover;
 }
 
 
-header > h1,
+@font-face {
+  font-family: header-font;
+  src: url("./assets/fonts/EagleHorizonP.ttf");
+}
+
+.eagle {
+  font-family: header-font;
+}
+
+/* Base styles for header h1 */
+header > h1 {
+  font-family: header-font;
+  font-size: 3rem;
+  letter-spacing: 5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) {
+  header > h1 {
+    font-size: 4rem;
+    letter-spacing: 8px;
+    white-space: nowrap;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  header > h1 {
+    font-size: 5rem;
+    letter-spacing: 10px;
+    white-space: nowrap;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  header > h1 {
+    font-size: 6rem;
+    letter-spacing: 12px;
+    white-space: nowrap;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  header > h1 {
+    font-size: 8rem;
+    letter-spacing: 15px;
+    white-space: nowrap;
+  }
+}
+
+header > p {
+  font-weight: 800;
+}
+
 h2 {
   font-family: "Merriweather", serif;
 }

@@ -1,8 +1,8 @@
-import Home from "./components/Authentication";
+import ResetPassword from "./components/Authentication/Reset";
 const App = () => {
   return (
     <>
-      <Home />
+      <ResetPassword />
     </>
   );
 };

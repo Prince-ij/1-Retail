@@ -2,7 +2,6 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../../index.css";
-import { ShoppingCart } from "lucide-react";
 import Card from "react-bootstrap/Card";
 import inventoryImg from "../../assets/images/inventory.jpg";
 import recieptImg from "../../assets/images/reciept.jpg";
@@ -13,28 +12,24 @@ const Home = () => {
   return (
     <Container>
       <header className="mt-3 px-5 py-5">
-        <h1 className="text-center mb-5">
-          <span className="text-info">1-Retail </span>: Your Complete Store
-          Management Solution
-        </h1>
+        <h1 className="text-center mb-2 text-info eagle">1-Retail</h1>
+        <p className="text-center mb-5">Your Complete Store Management Solution</p>
         <div className="text-center">
-          <ShoppingCart />
           <span className="px-3 py-3"> </span>
-          <Button variant="outline-primary" className="mt-3">
+          <Button variant="outline-primary" className="mt-2">
             Get Started
           </Button>
           <span className="px-3 py-3"> </span>
-          <ShoppingCart />
-          <Button variant="outline-secondary" className="mx-5 mt-3">
+          <Button variant="outline-secondary" className="mx-5 mt-2">
             Sign In
           </Button>
         </div>
       </header>
       <main>
         <section className="about">
-          <h2 className="px-5 mt-5 text-info">About 1-Retail</h2>
+          <h2 className="px-5 mt-5 text-info">About <span className="eagle"> 1-Retail</span></h2>
           <p className="text-secondary bg-light px-5 py-5">
-            1-Retail is a modern digital solution designed specifically for
+            <span className="eagle">1-Retail</span> is a modern digital solution designed specifically for
             retail store owners and managers who want to streamline their daily
             business operations. Think of it as your all-in-one store assistant
             that helps you manage everything from tracking your inventory to
@@ -57,7 +52,7 @@ const Home = () => {
             ledger books.
           </p>
           <p className="text-secondary bg-light px-5 py-5">
-            What makes 1-Retail special is that it's built with small to
+            What makes <span className="eagle">1-Retail</span> special is that it's built with small to
             medium-sized store owners in mind. Whether you run a grocery store,
             clothing shop, electronics store, or any other retail business, the
             system adapts to your needs without requiring technical expertise.
