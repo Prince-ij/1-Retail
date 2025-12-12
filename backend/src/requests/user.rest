@@ -1,0 +1,47 @@
+@hostname = http://localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+### Create User
+POST {{host}}/api/users
+Content-Type: {{contentType}}
+
+{
+"details": {
+  "firstName": "Ibrahim",
+  "lastName": "Aminu",
+  "email": "princeij56@gmail.com"
+},
+  "password": "adSense5*6"
+}
+
+# ### Check Email Test
+# GET {{host}}/api/users/sendmail/693ad9d99c88eb07ea989cae
+# Content-Type: {{contentType}}
+
+## Verify Email
+
+
+### Login User
+POST {{host}}/api/users/login
+Content-Type: {{contentType}}
+
+{
+    "email": "princeij56@gmail.com",
+    "password": "happyboy"
+}
+
+
+## Reset Password Link
+
+
+### Reset Password
+POST {{host}}/api/users/reset
+Content-Type: {{contentType}}
+
+{
+    "email": "princeij56@gmail.com",
+    "password": "happyboy",
+    "token": "e1068b6d5b5d70c85bb856a6673dbb2356cea99947e467d65482a9dde674feab"
+}

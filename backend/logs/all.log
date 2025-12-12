@@ -5,3 +5,79 @@
 2025-12-06 11:49:19:4919 [33mwarn[39m: [33mserver listening on http://localhost3001[39m
 2025-12-06 11:49:24:4924 [32minfo[39m: [32mserver listening on http://localhost3001[39m
 2025-12-06 11:56:57:5657 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 13:49:30:4930 [31merror[39m: [31mdb connection failed with Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.w7m5lan.mongodb.net[39m
+2025-12-11 13:49:30:4930 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 13:54:59:5459 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 13:54:59:5459 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 14:13:06:136 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 14:13:06:136 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 14:29:38:2938 [31merror[39m: [31mdb connection failed with Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.w7m5lan.mongodb.net[39m
+2025-12-11 14:29:38:2938 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 15:21:43:2143 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 15:21:43:2143 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 15:36:06:366 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 15:36:06:366 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 15:37:03:373 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 15:37:03:373 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 15:41:20:4120 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 15:41:20:4120 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 15:44:00:440 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 15:44:00:440 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 15:48:51:4851 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 15:48:51:4851 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:19:57:1957 [31merror[39m: [31mdb connection failed with Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.w7m5lan.mongodb.net[39m
+2025-12-11 16:19:57:1957 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:22:10:2210 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 16:22:10:2210 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:27:34:2734 [31merror[39m: [31mdb connection failed with MongoNetworkTimeoutError: Socket 'secureConnect' timed out after 36816ms (connectTimeoutMS: 30000)[39m
+2025-12-11 16:27:34:2734 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:30:01:301 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 16:30:01:301 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:32:38:3238 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: getaddrinfo EAI_AGAIN ac-xife2cw-shard-00-02.w7m5lan.mongodb.net[39m
+2025-12-11 16:32:38:3238 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:34:59:3459 [31merror[39m: [31mdb connection failed with MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/[39m
+2025-12-11 16:34:59:3459 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:35:56:3556 [31merror[39m: [31mdb connection failed with Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.w7m5lan.mongodb.net[39m
+2025-12-11 16:35:56:3556 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:36:46:3646 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:36:47:3647 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:38:18:3818 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:38:18:3818 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:38:46:3846 [32minfo[39m: [32memail sent[39m
+2025-12-11 16:38:46:3846 [32minfo[39m: [32mreset email successfully sent for princeij56@gmail.com[39m
+2025-12-11 16:40:38:4038 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:40:38:4038 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:40:44:4044 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:40:44:4044 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:40:50:4050 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:40:50:4050 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:41:26:4126 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:41:26:4126 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:45:22:4522 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:45:22:4522 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:46:12:4612 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:46:12:4612 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:47:18:4718 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:47:18:4718 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:49:02:492 [32minfo[39m: [32memail sent[39m
+2025-12-11 16:49:02:492 [32minfo[39m: [32mreset email successfully sent for princeij56@gmail.com[39m
+2025-12-11 16:50:19:5019 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:50:19:5019 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:50:51:5051 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:50:51:5051 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:52:28:5228 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:52:28:5228 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:54:04:544 [32minfo[39m: [32mverify email successfully sent for princeij56@gmail.com[39m
+2025-12-11 16:55:02:552 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:55:02:552 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:58:45:5845 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 16:58:45:5845 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 16:59:27:5927 [32minfo[39m: [32mreset email successfully sent for princeij56@gmail.com[39m
+2025-12-11 17:06:26:626 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 17:06:26:626 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 17:07:08:78 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 17:07:08:78 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 17:08:22:822 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 17:08:22:822 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-11 17:11:28:1128 [32minfo[39m: [32mdb connection successful[39m
+2025-12-11 17:11:28:1128 [32minfo[39m: [32mserver listening on http://localhost3001[39m

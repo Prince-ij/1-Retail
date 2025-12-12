@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
 
 const UserSchema = new Schema(
   {
@@ -9,6 +10,17 @@ const UserSchema = new Schema(
       email: { type: String, required: true },
     },
     password: { type: String, required: true },
+    isVerified: { type: Boolean, default: false },
+    verificationToken: {
+      type: String,
+      default: crypto.randomBytes(32).toString("hex"),
+    },
+    tokenExpired: {
+      type: Date,
+      default: function () {
+        return new Date(Date.now() + 60 * 60 * 1000); // expires in 1 hour
+      },
+    },
     products: [{ type: Schema.Types.ObjectId, ref: "Products" }],
     sales: [{ type: Schema.Types.ObjectId, ref: "Sale" }],
     credits: [{ type: Schema.Types.ObjectId, ref: "Credits" }],

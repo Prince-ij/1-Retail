@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import type { NextFunction, Request, Response } from "express";
 import z from "zod";
 import type { JwtPayload } from "jsonwebtoken";
+import type { UserReturnType } from "../schemas/userSchema.js";
 
 const errorHandler = (
   error: unknown,
@@ -45,7 +46,7 @@ const unknownEndpoint = (_req, res: Response) => {
 
 interface Token extends Request {
   token?: string | null;
-  user?: string | null;
+  user?: UserReturnType | null;
 }
 
 const tokenExtractor = (
@@ -71,9 +72,21 @@ const userExtractor = async (
   _response: Response,
   next: NextFunction
 ) => {
-  const decodedToken = jwt.verify(request.token, process.env.SECRET) as JwtPayloadWithId;
+  const decodedToken = jwt.verify(
+    request.token,
+    process.env.SECRET
+  ) as JwtPayloadWithId;
   if (decodedToken.id) {
-    request.user = await User.findById(decodedToken.id);
+    const user = await User.findById(decodedToken.id);
+    if (user.isVerified) {
+      request.user = {
+        id: user._id.toString(),
+        details: user.details,
+        products: user.products.toString(),
+        sales: user.sales.toString(),
+        credits: user.credits.toString(),
+      };
+    }
   } else {
     request.user = null;
   }

@@ -13,10 +13,25 @@ const User = z.object({
   credits: z.string(),
 });
 
-//eslint-disable-next-line
-const UserEntry = User.pick({
+export const UserEntry = User.pick({
   details: true,
   password: true,
+});
+
+export const LogInEntry = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export const PasswordResetEntry = z.object({
+  email: z.string(),
+  password: z.string(),
+  token: z.string(),
+});
+
+export const EmailVerifyEntry = z.object({
+  id: z.string(),
+  token: z.string(),
 });
 
 //eslint-disable-next-line
