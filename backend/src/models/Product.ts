@@ -5,6 +5,7 @@ const schema = new Schema({
     type: String,
     required: true,
   },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
   description: String,
   size: String,
   price: {

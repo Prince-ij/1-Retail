@@ -48,7 +48,6 @@ router.get("/reset-link/:id", async (req, res) => {
   }
 });
 
-
 // reset password
 router.post("/reset", async (req, res) => {
   const { email, password, token } = PasswordResetEntry.parse(req.body);

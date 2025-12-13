@@ -8,5 +8,12 @@ export const Product = z.object({
   price: z.number(),
   cost: z.number(),
   supplier: z.string().optional(),
-  stock: z.number()
+  stock: z.number(),
 });
+
+export const ProductEntry = Product.omit({
+  id: true,
+});
+
+export type ProductEntryType = z.infer<typeof ProductEntry>;
+export type ProductType = z.infer<typeof Product>;

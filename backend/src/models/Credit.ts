@@ -2,7 +2,8 @@ import mongoose, { Schema } from "mongoose";
 import Product from "./Product.js";
 
 const schema = new Schema({
-  product: { type: Schema.Types.ObjectId, ref: "Products" },
+  product: { type: Schema.Types.ObjectId, ref: "Product" },
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
   buyer: {
     type: String,
     min: 3,

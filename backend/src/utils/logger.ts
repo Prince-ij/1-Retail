@@ -32,7 +32,7 @@ const format = winston.format.combine(
   winston.format.colorize({ all: true }),
   winston.format.printf(
     // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    (info) => `${info.timestamp} ${info.level}: ${info.message}`
+    (info) => `${info.timestamp} - ${info.level}: - ${info.message}`
   )
 );
 

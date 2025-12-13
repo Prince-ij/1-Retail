@@ -33,6 +33,10 @@ const errorHandler = (
       return response.status(401).json({
         error: "token expired",
       });
+    } else {
+      return response.status(400).json({
+        error: `${error}`,
+      });
     }
   }
   return next(error);

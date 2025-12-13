@@ -8,6 +8,7 @@ const schema = new Schema({
     min: 3,
     max: 20,
   },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
   date: { type: Date, default: Date.now },
   quantity: {
     type: Number,

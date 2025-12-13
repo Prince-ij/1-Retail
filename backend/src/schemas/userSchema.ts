@@ -7,10 +7,6 @@ const User = z.object({
     lastName: z.string(),
     email: z.email(),
   }),
-  password: z.string(),
-  products: z.string(),
-  sales: z.string(),
-  credits: z.string(),
 });
 
 export const UserEntry = User.pick({
@@ -34,11 +30,6 @@ export const EmailVerifyEntry = z.object({
   token: z.string(),
 });
 
-//eslint-disable-next-line
-const UserReturn = User.omit({
-  password: true,
-});
 
 export type UserType = z.infer<typeof User>;
 export type UserEntryType = z.infer<typeof UserEntry>;
-export type UserReturnType = z.infer<typeof UserReturn>;

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import type { UserReturnType, UserEntryType } from "../schemas/userSchema.js";
+import type { UserType, UserEntryType } from "../schemas/userSchema.js";
 import dotenv from "dotenv";
 import User from "../models/User.js";
 import crypto from "crypto";
@@ -8,21 +8,19 @@ import logger from "../utils/logger.js";
 
 dotenv.config();
 
-const createUser = async (user: UserEntryType): Promise<UserReturnType> => {
+const createUser = async (user: UserEntryType): Promise<UserType> => {
   const newUser = new User(user);
   const savedUser = await newUser.save();
   return {
     id: savedUser._id.toString(),
     details: savedUser.details,
-    products: savedUser.products.toString(),
-    sales: savedUser.sales.toString(),
-    credits: savedUser.credits.toString(),
   };
 };
 
 const logIn = async (email: string, password: string): Promise<string> => {
   const user = await User.findOne({ "details.email": email });
-  if (user && password) {
+  const isPasswordCorrect = await user.checkPassword(password);
+  if (user && isPasswordCorrect) {
     const userForToken = {
       username: `${user.details.firstName}  ${user.details.lastName}`,
       id: user.id,
@@ -37,26 +35,20 @@ const logIn = async (email: string, password: string): Promise<string> => {
   }
 };
 
-const getUser = async (id: string): Promise<UserReturnType> => {
+const getUser = async (id: string): Promise<UserType> => {
   const user = await User.findById(id);
   return {
     id: user._id.toString(),
     details: user.details,
-    products: user.products.toString(),
-    sales: user.sales.toString(),
-    credits: user.credits.toString(),
   };
 };
 
-const getUsers = async (): Promise<UserReturnType[]> => {
-  const users = User.find({});
-  return (await users).map((user) => {
+const getUsers = async (): Promise<UserType[]> => {
+  const users = await User.find({});
+  return users.map((user) => {
     return {
       id: user._id.toString(),
       details: user.details,
-      products: user.products.toString(),
-      sales: user.sales.toString(),
-      credits: user.credits.toString(),
     };
   });
 };
@@ -65,7 +57,7 @@ const resetPassword = async (
   email: string,
   password: string,
   token: string
-): Promise<UserReturnType> => {
+): Promise<UserType> => {
   const user = await User.findOne({ "details.email": email });
   if (!user) {
     throw new Error("User does not exists");
@@ -83,9 +75,6 @@ const resetPassword = async (
   return {
     id: user._id.toString(),
     details: user.details,
-    products: user.products.toString(),
-    sales: user.sales.toString(),
-    credits: user.credits.toString(),
   };
 };
 

@@ -81,3 +81,43 @@
 2025-12-11 17:08:22:822 [32minfo[39m: [32mserver listening on http://localhost3001[39m
 2025-12-11 17:11:28:1128 [32minfo[39m: [32mdb connection successful[39m
 2025-12-11 17:11:28:1128 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-12 14:13:26:1326 [32minfo[39m: [32mserver listening on http://localhost3001[39m
+2025-12-12 14:21:49:2149 - [31merror[39m: - [31mdb connection failed with MongoNetworkError: getaddrinfo EAI_AGAIN ac-xife2cw-shard-00-02.w7m5lan.mongodb.net[39m
+2025-12-12 14:21:49:2149 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:22:13:2213 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:22:13:2213 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:25:11:2511 - [32minfo[39m: - [32mverify email successfully sent for aminuibrahimthefifth@gmail.com[39m
+2025-12-12 14:30:27:3027 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:30:27:3027 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:30:46:3046 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:30:46:3046 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:30:55:3055 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:30:55:3055 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:33:02:332 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:33:02:332 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:37:14:3714 - [31merror[39m: - [31mdb connection failed with Error: querySrv ETIMEOUT _mongodb._tcp.cluster0.w7m5lan.mongodb.net[39m
+2025-12-12 14:37:14:3714 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:41:06:416 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:41:06:416 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:43:34:4334 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:43:34:4334 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:43:39:4339 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:43:39:4339 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:43:45:4345 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:43:45:4345 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:43:53:4353 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:43:53:4353 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:44:06:446 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:44:06:446 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:44:14:4414 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:44:14:4414 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:46:34:4634 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:46:34:4634 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:48:22:4822 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:48:22:4822 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:49:36:4936 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:49:36:4936 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 14:59:46:5946 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 14:59:46:5946 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
+2025-12-12 15:04:49:449 - [32minfo[39m: - [32mdb connection successful[39m
+2025-12-12 15:04:49:449 - [32minfo[39m: - [32mserver listening on http://localhost3001[39m
