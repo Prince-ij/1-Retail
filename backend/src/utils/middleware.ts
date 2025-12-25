@@ -3,7 +3,10 @@ import User from "../models/User.js";
 import type { NextFunction, Request, Response } from "express";
 import z from "zod";
 import type { JwtPayload } from "jsonwebtoken";
-import type { UserReturnType } from "../schemas/userSchema.js";
+import type { UserType } from "../schemas/userSchema.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const errorHandler = (
   error: unknown,
@@ -50,7 +53,7 @@ const unknownEndpoint = (_req, res: Response) => {
 
 interface Token extends Request {
   token?: string | null;
-  user?: UserReturnType | null;
+  user?: UserType | null;
 }
 
 const tokenExtractor = (
@@ -76,9 +79,13 @@ const userExtractor = async (
   _response: Response,
   next: NextFunction
 ) => {
+  if (!request.token) {
+    request.user = null;
+    return next();
+  }
   const decodedToken = jwt.verify(
     request.token,
-    process.env.SECRET
+    process.env.JWT_SECRET
   ) as JwtPayloadWithId;
   if (decodedToken.id) {
     const user = await User.findById(decodedToken.id);
@@ -86,9 +93,6 @@ const userExtractor = async (
       request.user = {
         id: user._id.toString(),
         details: user.details,
-        products: user.products.toString(),
-        sales: user.sales.toString(),
-        credits: user.credits.toString(),
       };
     }
   } else {

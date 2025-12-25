@@ -24,6 +24,9 @@ const getProductByName = async (
   name: string
 ): Promise<ProductType> => {
   const product = await Product.findOne({ user: user.id, name: name });
+  if (!product) {
+    throw new Error("Product not found !");
+  }
   return {
     id: product._id.toString(),
     name: product.name,
@@ -59,8 +62,9 @@ const updateProduct = async (
   product: ProductEntryType
 ): Promise<ProductType> => {
   const updatedProduct = await Product.findOneAndUpdate(
-    { user: user.id },
-    { ...product, user: user.id }
+    { name: product.name },
+    { ...product, user: user.id },
+    { new: true }
   );
   return {
     id: updatedProduct._id.toString(),
@@ -74,8 +78,14 @@ const updateProduct = async (
   };
 };
 
-const deleteProduct = async (user: UserType): Promise<ProductType> => {
-  const deletedProduct = await Product.findOneAndDelete({ user: user.id });
+const deleteProduct = async (
+  user: UserType,
+  name: string
+): Promise<ProductType> => {
+  const deletedProduct = await Product.findOneAndDelete({
+    user: user.id,
+    name: name,
+  });
   return {
     id: deletedProduct._id.toString(),
     name: deletedProduct.name,

@@ -20,12 +20,17 @@ export interface MAILOPTIONS {
   html?: string;
 }
 
-const sendMail = async (mailOptions: MAILOPTIONS) => {
-  try {
-    await transporter.sendMail(mailOptions);
-  } catch (err) {
-    throw new Error("Problem sending mail", err as Error);
-  }
-};
+const sendMail =
+  process.env.NODE_ENV === "test"
+    ? (mailOptions: MAILOPTIONS) => {
+        return `Test Mail Succeeds for ${mailOptions.subject}`;
+      }
+    : async (mailOptions: MAILOPTIONS) => {
+        try {
+          await transporter.sendMail(mailOptions);
+        } catch (err) {
+          throw new Error("Problem sending mail", { cause: err });
+        }
+      };
 
 export default sendMail;

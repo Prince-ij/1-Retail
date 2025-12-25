@@ -1,6 +1,6 @@
 import z from "zod";
 
-const User = z.object({
+export const User = z.object({
   id: z.string(),
   details: z.object({
     firstName: z.string(),
@@ -9,9 +9,13 @@ const User = z.object({
   }),
 });
 
-export const UserEntry = User.pick({
-  details: true,
-  password: true,
+export const UserEntry = z.object({
+  details: z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.email(),
+  }),
+  password: z.string(),
 });
 
 export const LogInEntry = z.object({

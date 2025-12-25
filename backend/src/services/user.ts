@@ -19,15 +19,18 @@ const createUser = async (user: UserEntryType): Promise<UserType> => {
 
 const logIn = async (email: string, password: string): Promise<string> => {
   const user = await User.findOne({ "details.email": email });
+  if (!user) {
+    throw new Error("User not found");
+  }
   const isPasswordCorrect = await user.checkPassword(password);
-  if (user && isPasswordCorrect) {
+  if (user && isPasswordCorrect && user.isVerified) {
     const userForToken = {
       username: `${user.details.firstName}  ${user.details.lastName}`,
       id: user.id,
     };
     // eslint-disable-next-line
     const token: string = jwt.sign(userForToken, process.env.JWT_SECRET, {
-      expiresIn: 24,
+      expiresIn: "24h",
     }) as string;
     return token;
   } else {
