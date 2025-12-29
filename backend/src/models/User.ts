@@ -21,9 +21,9 @@ const UserSchema = new Schema(
         return new Date(Date.now() + 60 * 60 * 1000); // expires in 1 hour
       },
     },
-    products: [{ type: Schema.Types.ObjectId, ref: "Products" }],
+    products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     sales: [{ type: Schema.Types.ObjectId, ref: "Sale" }],
-    credits: [{ type: Schema.Types.ObjectId, ref: "Credits" }],
+    credits: [{ type: Schema.Types.ObjectId, ref: "Credit" }],
   },
   {
     methods: {

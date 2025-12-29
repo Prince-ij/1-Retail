@@ -2,16 +2,16 @@ const getDebts = () => {};
 const createDebt = () => {};
 const findDebtByBuyer = () => {};
 const findDebtByDate = () => {};
-const settleDebt = () => {};
+const payDebt = () => {};
 const getTotalDebtsAmount = () => {};
-const updateDebt = () => {};
+const correctDebt = () => {};
 
 export default {
   getDebts,
   createDebt,
   getTotalDebtsAmount,
   findDebtByDate,
-  updateDebt,
+  correctDebt,
   findDebtByBuyer,
-  settleDebt,
+  payDebt,
 };

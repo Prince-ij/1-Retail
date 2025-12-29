@@ -76,7 +76,7 @@ interface JwtPayloadWithId extends JwtPayload {
 
 const userExtractor = async (
   request: Token,
-  _response: Response,
+  response: Response,
   next: NextFunction
 ) => {
   if (!request.token) {
@@ -89,6 +89,9 @@ const userExtractor = async (
   ) as JwtPayloadWithId;
   if (decodedToken.id) {
     const user = await User.findById(decodedToken.id);
+    if (!user) {
+      return response.status(401).send("msg: Unauthorized");
+    }
     if (user.isVerified) {
       request.user = {
         id: user._id.toString(),
