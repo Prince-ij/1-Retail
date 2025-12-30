@@ -43,7 +43,7 @@ const newProduct = async (
   user: UserType,
   product: ProductEntryType
 ): Promise<ProductType> => {
-  const newProduct = new Product({ ...product, user: user.id });
+  const newProduct = new Product({ ...product, user: user.id, prevStock: product.stock });
   const savedProduct = await newProduct.save();
   return {
     id: savedProduct._id.toString(),
@@ -63,7 +63,7 @@ const updateProduct = async (
 ): Promise<ProductType> => {
   const updatedProduct = await Product.findOneAndUpdate(
     { name: product.name },
-    { ...product, user: user.id },
+    { ...product, user: user.id, prevStock: product.stock},
     { new: true }
   );
   return {

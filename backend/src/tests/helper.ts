@@ -1,5 +1,7 @@
 import User from "../models/User.js";
 import userService from "../services/user.js";
+import productService from "../services/products.js";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 
 // create user
 export const createUser = async () => {
@@ -23,4 +25,35 @@ export const createUser = async () => {
 export const loginUser = async () => {
   const token = await userService.logIn("princeij56@gmail.com", "woohoo123");
   return token;
+};
+
+export const createProducts = async (): Promise<string[]> => {
+  const flour = {
+    name: "flour",
+    description: "one bag of flour",
+    size: "small",
+    price: 10000,
+    cost: 5000,
+    supplier: "Sempene Stores",
+    stock: 25,
+  };
+  const yam = {
+    name: "yam",
+    description: "one tuber of yam",
+    price: 2500,
+    cost: 1500,
+    supplier: "Awere market",
+    stock: 50,
+  };
+  const token = await loginUser();
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET) as JwtPayload;
+  const db_user = await User.findById(decodedToken.id);
+  const user = {
+    id: db_user._id.toString(),
+    details: db_user.details,
+  };
+  const ids: string[] = [];
+  ids.push((await productService.newProduct(user, yam)).id);
+  ids.push((await productService.newProduct(user, flour)).id);
+  return ids;
 };

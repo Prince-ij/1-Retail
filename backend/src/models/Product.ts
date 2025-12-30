@@ -25,6 +25,9 @@ const schema = new Schema({
     type: Number,
     default: 0,
   },
+  prevStock: {
+    type: Number,
+  },
 });
 
 export default mongoose.model("Product", schema);

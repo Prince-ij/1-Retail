@@ -45,7 +45,6 @@ const getTotalProfitByDate = async (
     totalPrice += sale.totalPrice;
   });
   return totalPrice - totalCost;
-
 };
 
 const getTotalSalesByDate = async (
@@ -168,13 +167,17 @@ const correctSale = async (
 ): Promise<SalesType> => {
   sale.buyer = sale.buyer.toLowerCase();
   const updatedSale = await Sales.findOneAndUpdate(
-    { id: id },
+    { _id: id },
     { user: user.id, ...sale },
     { new: true }
-  );
+  ).populate<{ product: ProductType }>("product");
+
+  updatedSale.product.stock = updatedSale.product.prevStock;
+  await updatedSale.save();
+
   return {
     id: updatedSale._id.toString(),
-    product: updatedSale.product.toString(),
+    product: updatedSale.product.id.toString(),
     buyer: updatedSale.buyer,
     date: updatedSale.date,
     quantity: updatedSale.quantity,

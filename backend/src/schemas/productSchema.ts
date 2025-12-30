@@ -7,6 +7,7 @@ export const Product = z.object({
   size: z.string().optional(),
   price: z.number(),
   cost: z.number(),
+  prevStock: z.number().optional(),
   supplier: z.string().optional(),
   stock: z.number(),
 });
