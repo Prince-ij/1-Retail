@@ -166,24 +166,36 @@ const correctSale = async (
   sale: SalesEntryType
 ): Promise<SalesType> => {
   sale.buyer = sale.buyer.toLowerCase();
-  const updatedSale = await Sales.findOneAndUpdate(
-    { _id: id },
-    { user: user.id, ...sale },
-    { new: true }
-  ).populate<{ product: ProductType }>("product");
+  let isStockAvailable: boolean;
+  const product = await Product.findById(sale.product);
+  const initialSale = await Sales.findById(id);
+  product.stock = initialSale.quantity;
+  await product.save();
+  if (product.stock >= sale.quantity) {
+    isStockAvailable = true;
+  } else isStockAvailable = false;
+  if (isStockAvailable) {
+    const updatedSale = await Sales.findOneAndUpdate(
+      { _id: id },
+      { user: user.id, ...sale },
+      { new: true }
+    ).populate<{ product: ProductType }>("product");
 
-  updatedSale.product.stock = updatedSale.product.prevStock;
-  await updatedSale.save();
+    product.stock -= updatedSale.quantity;
+    await product.save();
 
-  return {
-    id: updatedSale._id.toString(),
-    product: updatedSale.product.id.toString(),
-    buyer: updatedSale.buyer,
-    date: updatedSale.date,
-    quantity: updatedSale.quantity,
-    totalPrice: updatedSale.totalPrice,
-    receiptId: updatedSale.receiptId,
-  };
+    await updatedSale.save();
+
+    return {
+      id: updatedSale._id.toString(),
+      product: updatedSale.product.id.toString(),
+      buyer: updatedSale.buyer,
+      date: updatedSale.date,
+      quantity: updatedSale.quantity,
+      totalPrice: updatedSale.totalPrice,
+      receiptId: updatedSale.receiptId,
+    };
+  } else throw new Error("out of stock");
 };
 
 export default {

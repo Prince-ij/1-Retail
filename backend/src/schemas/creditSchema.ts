@@ -1,18 +1,22 @@
 import z from "zod";
 
-export enum Status {
-  settled = "settled",
-  pending = "pending",
-}
+const Status = z.enum(["pending", "settled"]);
 
 export const Credit = z.object({
   id: z.string(),
   product: z.string(),
   buyer: z.string().optional(),
-  date: z.iso.datetime(),
+  date: z.date().optional(),
   quantity: z.number(),
   amountPaid: z.number().optional(),
-  totalDebt: z.number(),
-  status: z.enum(Status),
-  recieptId: z.string(),
+  totalDebt: z.number().optional(),
+  status: Status.optional(),
+  receiptId: z.string().optional(),
 });
+
+export const CreditEntry = Credit.omit({
+  id: true,
+});
+
+export type CreditType = z.infer<typeof Credit>;
+export type CreditEntryType = z.infer<typeof CreditEntry>;

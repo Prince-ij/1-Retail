@@ -3,7 +3,7 @@ import Product from "./Product.js";
 
 const schema = new Schema({
   product: { type: Schema.Types.ObjectId, ref: "Product" },
-  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  user: { type: Schema.Types.ObjectId, ref: "User" },
   buyer: {
     type: String,
     min: 3,
@@ -14,7 +14,7 @@ const schema = new Schema({
   quantity: {
     type: Number,
     min: 1,
-    default: 0,
+    default: 1,
   },
   amountPaid: {
     type: Number,

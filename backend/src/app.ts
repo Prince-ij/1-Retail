@@ -2,6 +2,7 @@ import express from "express";
 import userRouter from "./routes/user.js";
 import productRouter from "./routes/products.js";
 import salesRouter from "./routes/sales.js";
+import creditRouter from "./routes/credit.js";
 
 import morgan from "morgan";
 import helmet from "helmet";
@@ -28,6 +29,7 @@ app.get("/ping", (_req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/sales", salesRouter);
+app.use("/api/credits", creditRouter);
 
 app.use(errorHandler);
 app.use(unknownEndpoint);
