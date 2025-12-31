@@ -172,10 +172,13 @@ const correctDebt = async (
     product.stock -= updatedDebt.quantity;
     await product.save();
 
+    updatedDebt.totalDebt -= updatedDebt.amountPaid;
+    if (updatedDebt.totalDebt < 0) updatedDebt.totalDebt = 0;
     await updatedDebt.save();
     if (!updatedDebt) {
       throw new Error("Debt not found");
     }
+
     return {
       id: updatedDebt._id.toString(),
       product: updatedDebt.product.id.toString(),
