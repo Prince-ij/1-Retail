@@ -7,7 +7,8 @@
     "tsc": "tsc",
     "dev": "NODE_ENV=development tsx --watch ./src/index.ts",
     "start": "NODE_ENV=production node ./dist/index.js",
-    "test": "NODE_ENV=test tsx --test"
+    "test": "NODE_ENV=test tsx --test --test-concurrency=1",
+    "generate-swagger": "tsx ./src/utils/swagger.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,7 @@
     "@types/morgan": "^1.9.10",
     "@types/nodemailer": "^7.0.4",
     "@types/supertest": "^6.0.3",
+    "@types/swagger-ui-express": "^4.1.8",
     "@types/winston": "^2.4.4",
     "eslint": "^9.39.1",
     "supertest": "^7.1.4",
@@ -43,6 +45,9 @@
     "mongoose": "^9.0.0",
     "morgan": "^1.10.1",
     "nodemailer": "^7.0.11",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.18.3",
     "zod": "^4.1.13"
   }
