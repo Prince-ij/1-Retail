@@ -29,8 +29,11 @@ const getResetLink = async (id: string) => {
   const res = await axios.get(`${baseUrl}/reset-link/${id}`);
   return res.data;
 };
-const verifyEmail = async (id: string, token: string) => {
-  const res = await axios.get(`${baseUrl}/${id}/${token}`);
+const verifyEmail = async (
+  id: string | undefined,
+  token: string | undefined
+) => {
+  const res = await axios.get(`${baseUrl}/verify-email/${id}/${token}`);
   return res.data;
 };
 export default {
