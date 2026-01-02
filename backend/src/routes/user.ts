@@ -128,7 +128,6 @@ const router = express.Router();
  *       404:
  *         description: User not found
  */
-// Get a User
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   const user = await userService.getUser(id);
@@ -151,7 +150,6 @@ router.get("/:id", async (req, res) => {
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-// Get all users
 router.get("/", async (_req, res) => {
   const users = await userService.getUsers();
   res.status(200).json(users);
@@ -179,7 +177,6 @@ router.get("/", async (_req, res) => {
  *       400:
  *         description: Invalid request body or user already exists
  */
-// Create new user
 router.post("/", async (req, res) => {
   const userDetails = UserEntry.parse(req.body);
   const user = await userService.createUser(userDetails);
@@ -211,7 +208,6 @@ router.post("/", async (req, res) => {
  *       401:
  *         description: Email not verified or account not activated
  */
-// Login User
 router.post("/login", async (req, res) => {
   const { email, password } = LogInEntry.parse(req.body);
   const token = await userService.logIn(email, password);
@@ -243,7 +239,6 @@ router.post("/login", async (req, res) => {
  *       500:
  *         description: Failed to send reset link
  */
-// send reset link
 router.get("/reset-link/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -278,7 +273,6 @@ router.get("/reset-link/:id", async (req, res) => {
  *       404:
  *         description: User not found
  */
-// reset password
 router.post("/reset", async (req, res) => {
   const { email, password, token } = PasswordResetEntry.parse(req.body);
   const user = await userService.resetPassword(email, password, token);
@@ -316,7 +310,6 @@ router.post("/reset", async (req, res) => {
  *       404:
  *         description: User not found
  */
-// verify email
 router.get("/verify-email/:id/:token", async (req, res) => {
   const { id, token } = EmailVerifyEntry.parse(req.params);
   await userService.verifyEmail(id, token);

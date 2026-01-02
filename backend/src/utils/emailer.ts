@@ -4,8 +4,8 @@ dotenv.config();
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.USER_EMAIL,
     pass: process.env.APP_PASSWORD,
@@ -29,7 +29,7 @@ const sendMail =
         try {
           await transporter.sendMail(mailOptions);
         } catch (err) {
-          throw new Error("Problem sending mail", { cause: err });
+          throw new Error(`${err}`);
         }
       };
 
