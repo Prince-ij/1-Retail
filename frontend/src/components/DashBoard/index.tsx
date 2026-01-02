@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 
 const Dashboard = () => (
   <Container className="mt-5 mb-5">
+    <h1>Dashboard</h1>
     <Row>
       <Col className="col-2 m-3">
         <NavLink className="m-2" href="#">

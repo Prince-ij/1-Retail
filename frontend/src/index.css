@@ -4,6 +4,35 @@ footer {
   background-size: cover;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.circle-points {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  gap: 25px;
+}
+
+.point {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 200px;
+  padding: 10px;
+  background-color: #ffffff;
+  width: 200px;
+  border: 4px double #1c80cb;
+  font-family:  serif;
+  color: #0b090c;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border-radius: 100%;
+}
 
 @font-face {
   font-family: header-font;
