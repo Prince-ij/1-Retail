@@ -32,10 +32,15 @@ export const VerifyLogic = () => {
   });
 
   if (data) {
-    navigate("/login");
-    dispatch(
-      notify({ type: "success", message: "Email Verified , you can now login" })
-    );
+    setTimeout(() => {
+      navigate("/login");
+      dispatch(
+        notify({
+          type: "success",
+          message: "Email Verified , you can now login",
+        })
+      );
+    }, 5000);
   }
 
   if (isLoading) {

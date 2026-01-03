@@ -9,14 +9,17 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    logIn: (state) => {
-      return state;
+    logIn: (state, action) => {
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", action.payload.user);
+      state.token = action.payload;
     },
-    register: (state) => {
-      return state;
+    setUser: (state, action) => {
+      state.token = action.payload.token;
+      state.user = action.payload.user;
     },
   },
 });
 
-export const { logIn } = userSlice.actions;
+export const { logIn, setUser } = userSlice.actions;
 export default userSlice.reducer;
