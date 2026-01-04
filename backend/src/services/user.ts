@@ -103,8 +103,8 @@ const sendResetLink = async (id: string): Promise<boolean> => {
     throw new Error(`${err} occured`);
   }
 };
-const sendVerifyLink = async (id: string): Promise<boolean> => {
-  const user = await User.findById(id);
+const sendVerifyLink = async (email: string): Promise<boolean> => {
+  const user = await User.findOne({ "details.email": email });
   const verificationLink = `${process.env.FRONT_END_HOST}/${user.id}/${user.verificationToken}`;
 
   try {

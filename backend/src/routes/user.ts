@@ -210,23 +210,23 @@ router.post("/", async (req, res) => {
  */
 router.post("/login", async (req, res) => {
   const { email, password } = LogInEntry.parse(req.body);
-  const token = await userService.logIn(email, password);
-  res.status(200).json({ token: token });
+  const user = await userService.logIn(email, password);
+  res.status(200).json(user);
 });
 
 /**
  * @swagger
- * /api/users/reset-link/{id}:
+ * /api/users/reset-link/{email}:
  *   get:
  *     summary: Send password reset link to user's email
  *     tags: [Users]
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: email
  *         required: true
  *         schema:
  *           type: string
- *         description: User ID
+ *         description: User Email
  *     responses:
  *       200:
  *         description: Reset link sent successfully
@@ -239,8 +239,8 @@ router.post("/login", async (req, res) => {
  *       500:
  *         description: Failed to send reset link
  */
-router.get("/reset-link/:id", async (req, res) => {
-  const id = req.params.id;
+router.get("/reset-link/:email", async (req, res) => {
+  const id = req.params.email;
   try {
     await userService.sendResetLink(id);
     res.status(200).json({ message: "link sent successful" });
