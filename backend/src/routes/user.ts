@@ -240,9 +240,9 @@ router.post("/login", async (req, res) => {
  *         description: Failed to send reset link
  */
 router.get("/reset-link/:email", async (req, res) => {
-  const id = req.params.email;
+  const email = req.params.email;
   try {
-    await userService.sendResetLink(id);
+    await userService.sendResetLink(email);
     res.status(200).json({ message: "link sent successful" });
   } catch (err) {
     res.status(500).json({ msg: `failed to send link with ${err}` });

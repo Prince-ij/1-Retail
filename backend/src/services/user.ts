@@ -88,8 +88,8 @@ const resetPassword = async (
   };
 };
 
-const sendResetLink = async (id: string): Promise<boolean> => {
-  const user = await User.findById(id);
+const sendResetLink = async (email: string): Promise<boolean> => {
+  const user = await User.findOne({ "details.email": email });
   user.verificationToken = crypto.randomBytes(32).toString("hex");
   user.tokenExpired = new Date(Date.now() + 60 * 60 * 1000);
   await user.save();
@@ -103,8 +103,8 @@ const sendResetLink = async (id: string): Promise<boolean> => {
     throw new Error(`${err} occured`);
   }
 };
-const sendVerifyLink = async (email: string): Promise<boolean> => {
-  const user = await User.findOne({ "details.email": email });
+const sendVerifyLink = async (id: string): Promise<boolean> => {
+  const user = await User.findById(id);
   const verificationLink = `${process.env.FRONT_END_HOST}/${user.id}/${user.verificationToken}`;
 
   try {

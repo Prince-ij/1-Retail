@@ -30,8 +30,8 @@ const resetPassword = async (
   const res = await axios.post(`${baseUrl}/reset`, { email, password, token });
   return res.data;
 };
-const getResetLink = async (id: string) => {
-  const res = await axios.get(`${baseUrl}/reset-link/${id}`);
+const getResetLink = async (email: string) => {
+  const res = await axios.get(`${baseUrl}/reset-link/${email}`);
   return res.data;
 };
 const verifyEmail = async (
