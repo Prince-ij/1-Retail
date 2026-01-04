@@ -30,6 +30,7 @@ const App = () => {
         type={notification.type}
         message={notification.message}
       />
+
       <Routes>
         {!token ? (
           <>

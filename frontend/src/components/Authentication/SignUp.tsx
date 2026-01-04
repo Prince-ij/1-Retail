@@ -109,6 +109,7 @@ const SignUp = () => {
               required: "confirm password cannot be empty",
               minLength: { value: 6, message: "must be 6 or more chars" },
               validate: (value) => {
+                // eslint-disable-next-line
                 return value === watch("password") || "Passwords must match";
               },
             })}

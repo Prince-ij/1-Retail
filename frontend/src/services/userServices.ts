@@ -12,8 +12,13 @@ const createUser = async (user: UserEntryType): Promise<UserType> => {
   return res.data;
 };
 
-const loginUser = async (email: string, password: string) => {
-  const res = await axios.post(`${baseUrl}/login`, { email, password });
+interface LoginEntry {
+  email: string;
+  password: string;
+}
+
+const loginUser = async (credentials: LoginEntry) => {
+  const res = await axios.post(`${baseUrl}/login`, credentials);
   return res.data;
 };
 

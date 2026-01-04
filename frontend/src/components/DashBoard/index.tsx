@@ -1,8 +1,10 @@
 import { Container, NavLink } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
+import NavBar from "../NavBar";
 
 const Dashboard = () => (
   <Container className="mt-5 mb-5">
+    <NavBar />
     <h1>Dashboard</h1>
     <Row>
       <Col className="col-2 m-3">
