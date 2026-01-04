@@ -18,6 +18,12 @@ export const UserEntry = z.object({
   password: z.string(),
 });
 
+export interface userCredentials {
+  token: string;
+  username: string;
+  id: string;
+}
+
 export const LogInEntry = z.object({
   email: z.string(),
   password: z.string(),
@@ -33,7 +39,6 @@ export const EmailVerifyEntry = z.object({
   id: z.string(),
   token: z.string(),
 });
-
 
 export type UserType = z.infer<typeof User>;
 export type UserEntryType = z.infer<typeof UserEntry>;

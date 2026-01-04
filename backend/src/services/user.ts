@@ -1,9 +1,13 @@
 import jwt from "jsonwebtoken";
-import type { UserType, UserEntryType } from "../schemas/userSchema.js";
+import type {
+  UserType,
+  UserEntryType,
+  userCredentials,
+} from "../schemas/userSchema.js";
 import dotenv from "dotenv";
 import User from "../models/User.js";
 import crypto from "crypto";
-import sendMail, { type MAILOPTIONS } from "../utils/emailer.js";
+import { sendResetMail, sendVerifyMail } from "../utils/emailer.js";
 import logger from "../utils/logger.js";
 
 dotenv.config();
@@ -17,7 +21,10 @@ const createUser = async (user: UserEntryType): Promise<UserType> => {
   };
 };
 
-const logIn = async (email: string, password: string): Promise<string> => {
+const logIn = async (
+  email: string,
+  password: string
+): Promise<userCredentials> => {
   const user = await User.findOne({ "details.email": email });
   if (!user) {
     throw new Error("User not found");
@@ -32,7 +39,7 @@ const logIn = async (email: string, password: string): Promise<string> => {
     const token: string = jwt.sign(userForToken, process.env.JWT_SECRET, {
       expiresIn: "24h",
     }) as string;
-    return token;
+    return { token, ...userForToken };
   } else {
     throw new Error("Incorrect credentials");
   }
@@ -87,14 +94,9 @@ const sendResetLink = async (id: string): Promise<boolean> => {
   user.tokenExpired = new Date(Date.now() + 60 * 60 * 1000);
   await user.save();
   const verificationLink = `${process.env.FRONT_END_HOST}/${user.id}/${user.details.email}/${user.verificationToken}`;
-  const mailOptions: MAILOPTIONS = {
-    from: "1-Retail",
-    to: user.details.email,
-    subject: "Reset Your Password",
-    text: `Click the link to reset your password: ${verificationLink}`,
-  };
+
   try {
-    await sendMail(mailOptions);
+    await sendResetMail(user.details.email, verificationLink);
     logger.info(`reset email successfully sent for ${user.details.email}`);
     return true;
   } catch (err) {
@@ -104,14 +106,14 @@ const sendResetLink = async (id: string): Promise<boolean> => {
 const sendVerifyLink = async (id: string): Promise<boolean> => {
   const user = await User.findById(id);
   const verificationLink = `${process.env.FRONT_END_HOST}/${user.id}/${user.verificationToken}`;
-  const mailOptions: MAILOPTIONS = {
-    from: "1-Retail",
-    to: user.details.email,
-    subject: "Verify Email",
-    text: `Click the link to verify your account: ${verificationLink}`,
-  };
+
   try {
-    await sendMail(mailOptions);
+    await sendVerifyMail(
+      user.details.email,
+      verificationLink,
+      `${user.details.firstName} ${user.details.lastName}`
+    );
+
     logger.info(`verify email successfully sent for ${user.details.email}`);
     return true;
   } catch (err) {

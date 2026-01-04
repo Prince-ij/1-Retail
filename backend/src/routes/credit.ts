@@ -59,16 +59,6 @@ interface reqHeader extends Request {
  *         quantity:
  *           type: number
  *           description: Quantity of products sold
- *         amountPaid:
- *           type: number
- *           description: Amount already paid by the buyer
- *         totalDebt:
- *           type: number
- *           description: Total debt amount
- *         status:
- *           type: string
- *           enum: [pending, settled]
- *           description: Status of the credit transaction
  *     PaymentRequest:
  *       type: object
  *       required:
