@@ -16,18 +16,7 @@ const ResetLink = () => {
   const dispatch = useAppDispatch();
   const resetLinkMutation = useMutation({
     mutationFn: userServices.getResetLink,
-    onSuccess: () => {
-      return (
-        <Container fluid className="bg-dark p-5">
-          <p className="text-center mt-5 mb-5 text-success display-5">
-            Reset Link sent Successfully ✔
-          </p>
-          <p className="text-center mt-5 mb-5 text-warning display-5">
-            Check Your Email to Reset Your Password
-          </p>
-        </Container>
-      );
-    },
+
     onError: () => {
       dispatch(
         notify({ type: "danger", message: "could not send reset link!" })
@@ -45,6 +34,19 @@ const ResetLink = () => {
   const onSubmit: SubmitHandler<FormType> = ({ email }) => {
     resetLinkMutation.mutate(email);
   };
+
+  if (resetLinkMutation.isSuccess) {
+    return (
+      <Container fluid className="bg-dark p-5">
+        <p className="text-center mt-5 mb-5 text-success display-5">
+          Reset Link sent Successfully ✔
+        </p>
+        <p className="text-center mt-5 mb-5 text-warning display-5">
+          Check Your Email to Reset Your Password
+        </p>
+      </Container>
+    );
+  }
   return (
     <Container className="mt-5 mb-5">
       <h1 className="mx-5 my-5 lead display-5">

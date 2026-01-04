@@ -22,12 +22,14 @@ const loginUser = async (credentials: LoginEntry) => {
   return res.data;
 };
 
-const resetPassword = async (
-  email: string,
-  password: string,
-  token: string
-) => {
-  const res = await axios.post(`${baseUrl}/reset`, { email, password, token });
+interface resetEntry {
+  email: string | undefined;
+  password: string;
+  token: string | undefined;
+}
+
+const resetPassword = async (credentials: resetEntry) => {
+  const res = await axios.post(`${baseUrl}/reset`, credentials);
   return res.data;
 };
 const getResetLink = async (email: string) => {

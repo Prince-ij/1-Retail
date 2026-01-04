@@ -41,6 +41,7 @@ const App = () => {
             <Route path="/reset" element={<ResetPassword />} />
             <Route path="/reset-link" element={<ResetLink />} />
             <Route path="/:id/:token" element={<VerifyLogic />} />
+            <Route path="/:id/:email/:token" element={<ResetPassword />} />
           </>
         ) : (
           <>
