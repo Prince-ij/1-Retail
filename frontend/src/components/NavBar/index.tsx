@@ -26,7 +26,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
+        <Container fluid>
           <Navbar.Brand as={Link} to="/" className="eagle text-secondary">
             1-Retail
           </Navbar.Brand>

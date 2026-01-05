@@ -1,5 +1,10 @@
-const Debts = () => {
-  return <>Debts</>;
-};
+import { Container } from "react-bootstrap";
+import NavBar from "../NavBar";
 
-export default Debts;
+const Debt = () => (
+  <Container>
+    <NavBar />
+  </Container>
+);
+
+export default Debt;

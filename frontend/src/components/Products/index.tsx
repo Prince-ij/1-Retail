@@ -1,5 +1,10 @@
-const Products = () => {
-  return <>Products</>;
-};
+import { Container } from "react-bootstrap";
+import NavBar from "../NavBar";
 
-export default Products;
+const Product = () => (
+  <Container>
+    <NavBar />
+  </Container>
+);
+
+export default Product;

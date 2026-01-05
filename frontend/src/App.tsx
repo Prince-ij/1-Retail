@@ -7,6 +7,7 @@ import { VerifyPage, VerifyLogic } from "./components/Authentication/Verify";
 import ResetLink from "./components/Authentication/ResetLink";
 import ResetPassword from "./components/Authentication/Reset";
 import Sales from "./components/Sales";
+import Product from "./components/Products";
 import Debts from "./components/Debts";
 import { useAppSelector, useAppDispatch } from "./hooks";
 import AlertDismissable from "./components/AlertDismissable";
@@ -47,7 +48,8 @@ const App = () => {
           <>
             <Route path="/" element={<Dashboard />} />
             <Route path="/sales" element={<Sales />} />
-            <Route path="/debts" element={<Debts />} />
+            <Route path="/credits" element={<Debts />} />
+            <Route path="/products" element={<Product />} />
           </>
         )}
       </Routes>
