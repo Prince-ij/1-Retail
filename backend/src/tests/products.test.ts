@@ -60,7 +60,7 @@ test("duplicate product name fails", async () => {
 test("product deletion successful", async () => {
   const product = await Product.findOne({ name: "flour" });
   await api
-    .delete(`/api/products/${product.name}`)
+    .delete(`/api/products/${product.id}`)
     .auth(token, { type: "bearer" })
     .expect(204);
   const productSearch = await Product.findOne({ name: "flour" });

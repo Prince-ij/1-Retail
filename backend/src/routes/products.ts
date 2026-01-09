@@ -101,19 +101,19 @@ router.get("/", userExtractor, async (req: reqHeader, res) => {
 
 /**
  * @swagger
- * /api/products/{name}:
+ * /api/products/{id}:
  *   get:
- *     summary: Get a specific product by name
+ *     summary: Get a specific product by id
  *     tags: [Products]
  *     security:
  *       - BearerAuth: []
  *     parameters:
  *       - in: path
- *         name: name
+ *         id: id
  *         required: true
  *         schema:
  *           type: string
- *         description: Product name to search for
+ *         description: Product id to search for
  *     responses:
  *       200:
  *         description: Product found successfully
@@ -127,10 +127,9 @@ router.get("/", userExtractor, async (req: reqHeader, res) => {
  *         description: Product not found
  */
 // find products
-router.get("/:name", userExtractor, async (req: reqHeader, res) => {
-  const name = req.params.name;
-  const user = User.parse(req.user);
-  const product = await productService.getProductByName(user, name);
+router.get("/:id", userExtractor, async (req: reqHeader, res) => {
+  const id = req.params.id;
+  const product = await productService.getProductById(id);
   res.status(200).json(product);
 });
 
@@ -206,19 +205,19 @@ router.put("/", userExtractor, async (req: reqHeader, res) => {
 
 /**
  * @swagger
- * /api/products/{name}:
+ * /api/products/{id}:
  *   delete:
- *     summary: Delete a product by name
+ *     summary: Delete a product by id
  *     tags: [Products]
  *     security:
  *       - BearerAuth: []
  *     parameters:
  *       - in: path
- *         name: name
+ *         id: id
  *         required: true
  *         schema:
  *           type: string
- *         description: Product name to delete
+ *         description: Product id to delete
  *     responses:
  *       204:
  *         description: Product deleted successfully
@@ -228,10 +227,9 @@ router.put("/", userExtractor, async (req: reqHeader, res) => {
  *         description: Product not found
  */
 // delete products
-router.delete("/:name", userExtractor, async (req: reqHeader, res) => {
-  const name = req.params.name;
-  const user = User.parse(req.user);
-  const deletedProduct = await productService.deleteProduct(user, name);
+router.delete("/:id", userExtractor, async (req: reqHeader, res) => {
+  const id = req.params.id;
+  const deletedProduct = await productService.deleteProduct(id);
   res.status(204).json(deletedProduct);
 });
 

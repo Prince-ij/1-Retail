@@ -23,8 +23,8 @@ export const createUser = async () => {
 
 // loginUser
 export const loginUser = async () => {
-  const token = await userService.logIn("princeij56@gmail.com", "woohoo123");
-  return token;
+  const user = await userService.logIn("princeij56@gmail.com", "woohoo123");
+  return user.token;
 };
 
 export const createProducts = async (): Promise<string[]> => {
