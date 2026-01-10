@@ -13,8 +13,8 @@ const getProducts = async () => {
   return res.data;
 };
 
-const getProductByName = async (name: string) => {
-  const res = await axios.get<ProductType>(`${baseUrl}/${name}`, config);
+const getProductById = async (id: string | undefined) => {
+  const res = await axios.get<ProductType>(`${baseUrl}/${id}`, config);
   return res.data;
 };
 
@@ -27,15 +27,15 @@ const updateProduct = async (product: ProductEntryType) => {
   const res = await axios.put<ProductType>(baseUrl, product, config);
   return res.data;
 };
-const deleteProductByName = async (name: string) => {
-  const res = await axios.delete(`${baseUrl}/${name}`, config);
+const deleteProductById = async (id: string | undefined) => {
+  const res = await axios.delete(`${baseUrl}/${id}`, config);
   return res.data;
 };
 
 export default {
   getProducts,
-  getProductByName,
+  getProductById,
   createProduct,
   updateProduct,
-  deleteProductByName,
+  deleteProductById,
 };

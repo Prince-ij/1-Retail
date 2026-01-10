@@ -20,7 +20,9 @@
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.69.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "react-virtualized-auto-sizer": "^2.0.2",
+    "react-window": "^2.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",

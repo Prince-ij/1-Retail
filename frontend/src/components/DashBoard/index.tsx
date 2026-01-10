@@ -94,7 +94,7 @@ const Dashboard = () => {
               <div>
                 <small className="text-muted">Total Sales</small>
                 <h5 className="mb-0 fw-bold">
-                  {totalSales.isPending ? "..." : totalSales.data}
+                  {totalSales.isPending ? "..." : totalSales.data || 0}
                 </h5>
               </div>
             </Card.Body>
@@ -163,7 +163,7 @@ const Dashboard = () => {
               <div>
                 <small className="text-muted">Total Products</small>
                 <h5 className="mb-0 fw-bold">
-                  {products.isPending ? "..." : products?.data?.length}
+                  {products.isPending ? "..." : products?.data?.length || 0}
                 </h5>
               </div>
             </Card.Body>

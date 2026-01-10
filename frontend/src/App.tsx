@@ -13,6 +13,7 @@ import { useAppSelector, useAppDispatch } from "./hooks";
 import AlertDismissable from "./components/AlertDismissable";
 import { setUser } from "./reducers/userReducer";
 import { useEffect } from "react";
+import ProductView from "./components/Products/ProductViewPage";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="/sales" element={<Sales />} />
             <Route path="/credits" element={<Debts />} />
             <Route path="/products" element={<Product />} />
+            <Route path="/products/:id" element={<ProductView/>} />
           </>
         )}
       </Routes>
