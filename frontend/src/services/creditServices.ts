@@ -44,7 +44,7 @@ const getDebtsByBuyer = async (name: string) => {
 };
 
 const payPartDebt = async (id: string, amount: number) => {
-  const res = await axios.post<DebtType>(
+  const res = await axios.post(
     `${baseUrl}/pay`,
     { id, amount },
     config

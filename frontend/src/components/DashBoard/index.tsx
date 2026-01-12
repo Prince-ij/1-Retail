@@ -48,7 +48,7 @@ const Dashboard = () => {
   });
 
   const uniqueDebtors = totalDebts.data
-    ? Array.from(new Set(totalDebts.data.map((d) => d.buyer))).length
+    ? Array.from(new Set(totalDebts.data.map((d) => d.buyer && d.status !== "settled"))).length
     : 0;
 
   const totalDebtAmount = useQuery({

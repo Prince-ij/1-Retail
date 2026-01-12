@@ -18,6 +18,10 @@ const formatDate = (date: string | Date) => {
 
 const Sales = () => {
   const [show, setShow] = useState(false);
+  const [buyerFilter, setBuyerFilter] = useState("");
+  const [productFilter, setProductFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+
   const sales = useQuery({
     queryKey: ["sales"],
     queryFn: saleService.getSales,
@@ -37,6 +41,21 @@ const Sales = () => {
     return product ? product.price.toLocaleString() : "—";
   };
 
+  const filteredSales = sales.data?.filter((debt) => {
+    const matchesBuyer =
+      buyerFilter === "" ||
+      debt.buyer.toLowerCase().includes(buyerFilter.toLowerCase());
+
+    const matchesProduct =
+      productFilter === "" || debt.product === productFilter;
+
+    const matchesDate =
+      dateFilter === "" ||
+      new Date(debt.date).toISOString().slice(0, 10) === dateFilter;
+
+    return matchesBuyer && matchesProduct && matchesDate;
+  });
+
   return (
     <Container fluid>
       <NavBar />
@@ -44,6 +63,52 @@ const Sales = () => {
         New Sale
       </Button>
       <SaleModal setShow={setShow} show={show} />
+      <p className="lead fw-bold">Sales</p>
+      <div className="d-flex gap-3 m-3">
+        {/* Buyer filter */}
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Filter by buyer"
+          value={buyerFilter}
+          onChange={(e) => setBuyerFilter(e.target.value)}
+        />
+
+        {/* Product filter */}
+        <select
+          className="form-select"
+          value={productFilter}
+          onChange={(e) => setProductFilter(e.target.value)}
+        >
+          <option value="">All products</option>
+          {products.data?.map((product) => (
+            <option key={product.id} value={product.id}>
+              {product.name}
+            </option>
+          ))}
+        </select>
+
+        {/* Date filter */}
+        <input
+          type="date"
+          className="form-control"
+          value={dateFilter}
+          onChange={(e) => setDateFilter(e.target.value)}
+        />
+
+        {/* Clear filters */}
+        <Button
+          variant="outline-secondary"
+          onClick={() => {
+            setBuyerFilter("");
+            setProductFilter("");
+            setDateFilter("");
+          }}
+        >
+          Clear
+        </Button>
+      </div>
+
       <Table className="table-bordered table-striped">
         <thead>
           <tr>
@@ -55,7 +120,7 @@ const Sales = () => {
           </tr>
         </thead>
         <tbody>
-          {sales.data?.map((sale) => {
+          {filteredSales?.map((sale) => {
             return (
               <tr key={sale.id}>
                 <td>{formatDate(sale.date)}</td>
@@ -64,7 +129,10 @@ const Sales = () => {
                 <td>{sale.quantity}</td>
                 <td>{sale.buyer}</td>
                 <td>
-                  <Link to={`/receipt/${sale.id}`} className="text-decoration-none">
+                  <Link
+                    to={`/receipt/${sale.id}`}
+                    className="text-decoration-none"
+                  >
                     View Reciept
                   </Link>{" "}
                 </td>
