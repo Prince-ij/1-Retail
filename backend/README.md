@@ -61,43 +61,50 @@ src/
    cp .env.example .env
    ```
 
-4. **Configure environment variables**
+   # Complete environment variables setup
 
-   ```bash
-   # Database
    MONGODB_URI=mongodb://localhost:27017/retail-production
    TEST_MONGODB_URI=mongodb://localhost:27017/retail-test
-
-   # Authentication
-   JWT_SECRET=your-super-secret-jwt-key-here
-
-   # Email Service (for verification/password reset)
+   JWT_SECRET=your-super-secret-jwt-key-minimum-32-characters-long
    EMAIL_HOST=smtp.gmail.com
    EMAIL_PORT=587
    EMAIL_USER=your-email@gmail.com
-   EMAIL_PASS=your-app-password
-
-   # Server
+   EMAIL_PASS=your-gmail-app-password # Use App Password for Gmail
    PORT=3001
    NODE_ENV=development
+
    ```
 
-5. **Build the application**
+   ```
+
+4. **Build the application**
+
    ```bash
    npm run tsc
    ```
 
+5. **Start development server**
+
+   ```bash
+   npm run dev
+   ```
+
+   Server starts at `http://localhost:3001` with hot reloading enabled.
+
 ## 🚀 Usage
 
-### Development
+### Development Mode
 
 ```bash
 npm run dev
 ```
 
-Server will start on `http://localhost:3001` with hot reloading enabled.
+- Automatic TypeScript compilation and restart on changes
+- Morgan logging for HTTP requests
+- Detailed error messages and stack traces
+- Swagger documentation available at `/api-docs`
 
-### Production
+### Production Mode
 
 ```bash
 npm start
@@ -235,27 +242,77 @@ Authorization: Bearer <your-jwt-token>
 
 ## 🧪 Testing
 
-The application includes comprehensive test coverage:
+The application includes comprehensive test coverage for all critical business logic:
 
-### Run Tests
+### Test Configuration
+
+- **Test Environment**: Separate test database to avoid data pollution
+- **Test Runner**: Node.js built-in test runner with TypeScript support
+- **Test Strategy**: Integration tests covering API endpoints and business logic
+- **Test Data**: Helper functions create consistent test data
+- **Database Cleanup**: Automatic cleanup before and after test suites
+
+### Running Tests
 
 ```bash
+# Run all tests
 npm test
+
+# Run specific test file
+npm test -- --grep "user authentication"
+
+# Run with verbose output
+NODE_ENV=test npm test
+
+# Run tests with coverage (if configured)
+npm run test:coverage
 ```
 
-### Test Structure
+### Test Suites Overview
 
-- **Unit Tests**: Individual service function testing
-- **Integration Tests**: API endpoint testing
-- **Authentication Tests**: JWT token validation
-- **Database Tests**: CRUD operation validation
+#### Authentication Tests (`user_auth.test.ts`)
 
-### Test Files
+- ✅ User registration with validation
+- ✅ Email verification workflow
+- ✅ User login and JWT token generation
+- ✅ Password reset functionality
+- ✅ Protected route authentication
+- ✅ Token expiration handling
 
-- `src/tests/user_auth.test.ts` - User authentication flow
-- `src/tests/products.test.ts` - Product management
-- `src/tests/sales_creation.test.ts` - Sales transactions
-- `src/tests/credit_creation.test.ts` - Credit management
+#### Product Management Tests (`products.test.ts`)
+
+- ✅ Product creation with validation
+- ✅ Product retrieval and filtering
+- ✅ Product updates and stock management
+- ✅ Product deletion and referential integrity
+- ✅ Stock level validation
+- ✅ Supplier information management
+
+#### Sales Transaction Tests (`sales_creation.test.ts`)
+
+- ✅ Sales recording with automatic calculations
+- ✅ Inventory updates during sales
+- ✅ Receipt ID generation and uniqueness
+- ✅ Profit calculation accuracy
+- ✅ Sales analytics by date
+- ✅ Buyer transaction history
+- ✅ Product sales tracking
+
+#### Credit Management Tests (`credit_creation.test.ts`)
+
+- ✅ Credit sale recording
+- ✅ Payment processing (partial and full)
+- ✅ Credit status management
+- ✅ Debt calculation accuracy
+- ✅ Customer debt aggregation
+- ✅ Credit receipt generation
+
+### Test Data Management
+
+- **Helper Functions**: Consistent test data creation
+- **Database Isolation**: Each test suite runs in isolation
+- **Cleanup Procedures**: Automatic test data cleanup
+- **Realistic Data**: Test data mimics real-world scenarios
 
 ## 🛡️ Security Features
 
@@ -275,37 +332,138 @@ Structured logging with Winston:
 - **Production**: File-based logging (`logs/all.log`, `logs/error.log`)
 - **Error Tracking**: Centralized error logging
 
-## 🚀 Deployment
+## 🚀 Deployment & Production
 
-### Environment Setup
+### Production Environment Setup
 
-1. Set `NODE_ENV=production`
-2. Configure production MongoDB URI
-3. Set secure JWT secret
-4. Configure email service
-5. Set up reverse proxy (nginx recommended)
+1. **Environment Configuration**
+
+   ```bash
+   NODE_ENV=production
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/retail-prod
+   JWT_SECRET=your-super-secure-production-jwt-secret-key
+   EMAIL_HOST=smtp.sendgrid.net  # Or your production email service
+   EMAIL_PORT=587
+   EMAIL_USER=apikey  # For SendGrid
+   EMAIL_PASS=your-sendgrid-api-key
+   PORT=3001
+   ```
+
+2. **Database Setup**
+
+   ```bash
+   # Create production database indexes
+   # Ensure proper backup strategy
+   # Configure connection pooling
+   ```
+
+3. **Build and Start**
+   ```bash
+   npm run tsc
+   npm start
+   ```
+
+### Docker Deployment
+
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install production dependencies only
+RUN npm ci --only=production
+
+# Copy built application
+COPY dist ./dist
+
+# Expose port
+EXPOSE 3001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3001/ping || exit 1
+
+# Start application
+CMD ["node", "dist/index.js"]
+```
+
+### Cloud Platform Deployment
+
+#### Heroku
+
+```bash
+# Create Heroku app
+heroku create your-app-name
+
+# Set environment variables
+heroku config:set NODE_ENV=production
+heroku config:set MONGODB_URI=your-mongodb-uri
+heroku config:set JWT_SECRET=your-jwt-secret
+
+# Deploy
+git push heroku main
+```
+
+#### Railway
+
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
+
+# Login and deploy
+railway login
+railway link
+railway up
+```
+
+#### DigitalOcean App Platform
+
+- Connect GitHub repository
+- Configure environment variables
+- Set build command: `npm run tsc`
+- Set run command: `npm start`
 
 ### Production Checklist
 
-- [ ] Environment variables configured
-- [ ] Database indexes created
-- [ ] SSL certificate installed
-- [ ] Monitoring setup
-- [ ] Backup strategy implemented
-- [ ] Log rotation configured
+- [ ] **Environment Variables**: All production configs set
+- [ ] **Database**: Production MongoDB with proper indexes
+- [ ] **SSL/HTTPS**: SSL certificate configured
+- [ ] **Domain**: Custom domain configured
+- [ ] **Monitoring**: Application monitoring setup
+- [ ] **Logging**: Production logging configured
+- [ ] **Backups**: Database backup strategy implemented
+- [ ] **Security**: Security headers and rate limiting enabled
+- [ ] **Performance**: Database optimization and caching
+- [ ] **Documentation**: API documentation accessible
 
-### Docker Support
+### Monitoring & Maintenance
 
-```dockerfile
-# Dockerfile example
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY dist ./dist
-EXPOSE 3001
-CMD ["node", "dist/index.js"]
+#### Health Checks
+
+```bash
+# Application health
+curl http://your-domain.com/ping
+
+# API documentation
+curl http://your-domain.com/api-docs
 ```
+
+#### Log Management
+
+- **Production Logs**: Stored in `logs/` directory
+- **Error Tracking**: Centralized error logging
+- **Performance Metrics**: Response time monitoring
+- **Log Rotation**: Automatic log file rotation
+
+#### Database Maintenance
+
+- **Regular Backups**: Automated daily backups
+- **Index Optimization**: Monitor and optimize database indexes
+- **Performance Monitoring**: Query performance tracking
+- **Data Cleanup**: Archive old data as needed
 
 ## 🤝 Contributing
 
