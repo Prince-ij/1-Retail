@@ -137,3 +137,13 @@ p {
 .product-row:hover {
   background-color: #f8f9fa;
 }
+
+@media print {
+  button {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+}

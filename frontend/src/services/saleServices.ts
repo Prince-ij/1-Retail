@@ -13,6 +13,11 @@ const getSales = async () => {
   return res.data;
 };
 
+const getSale = async (id: string | undefined) => {
+  const res = await axios.get<SalesType>(`${baseUrl}/unique/${id}`, config);
+  return res.data;
+};
+
 const createSale = async (sale: SalesEntryType) => {
   const res = await axios.post<SalesType>(baseUrl, sale, config);
   return res.data;
@@ -53,6 +58,7 @@ const getSalesByProduct = async (name: string) => {
 
 export default {
   getSales,
+  getSale,
   createSale,
   correctSale,
   getProfitByDate,

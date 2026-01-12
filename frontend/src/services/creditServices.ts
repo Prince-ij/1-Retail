@@ -13,6 +13,11 @@ const getDebts = async () => {
   return res.data;
 };
 
+const getDebt = async (id: string | undefined) => {
+  const res = await axios.get<DebtType>(`${baseUrl}/unique/${id}`, config);
+  return res.data;
+};
+
 const createDebt = async (debt: DebtEntryType) => {
   const res = await axios.post<DebtType>(baseUrl, debt, config);
   return res.data;
@@ -49,6 +54,7 @@ const payPartDebt = async (id: string, amount: number) => {
 
 export default {
   getDebts,
+  getDebt,
   createDebt,
   correctDebt,
   getTotalDebtAmount,
