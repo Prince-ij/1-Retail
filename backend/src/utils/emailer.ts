@@ -4,21 +4,21 @@ import logger from "./logger.js";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
+  host: "smtp-relay.brevo.com",
+  port: 2525,
   secure: false,
   auth: {
-    user: process.env.USER_EMAIL,
-    pass: process.env.APP_PASSWORD,
+    user: process.env.BREVO_SMTP_USER,
+    pass: process.env.BREVO_SMTP_KEY,
   },
 });
 
-// Verify SMTP connection at startup
+// Verify SMTP connection (safe with Brevo)
 transporter.verify((error) => {
   if (error) {
     logger.error("1-Retail SMTP connection failed", error);
   } else {
-    logger.info("1-Retail SMTP server ready");
+    logger.info("1-Retail SMTP server ready (Brevo)");
   }
 });
 
@@ -29,7 +29,7 @@ export const sendVerifyMail = async (
 ) => {
   try {
     const info = await transporter.sendMail({
-      from: `"1-Retail" <${process.env.USER_EMAIL}>`,
+      from: `"1-Retail" <${process.env.MAIL_FROM}>`,
       to: email,
       subject: "Verify your 1-Retail account",
       text: `Hello ${name},
@@ -67,7 +67,7 @@ If you did not create a 1-Retail account, please ignore this email.`,
 export const sendResetMail = async (email: string, link: string) => {
   try {
     const info = await transporter.sendMail({
-      from: `"1-Retail" <${process.env.USER_EMAIL}>`,
+      from: `"1-Retail" <${process.env.MAIL_FROM}>`,
       to: email,
       subject: "Reset your 1-Retail password",
       text: `You requested a password reset for your 1-Retail account.
@@ -98,4 +98,3 @@ If you did not request this, ignore this email.`,
     throw new Error("Failed to send reset email");
   }
 };
-
