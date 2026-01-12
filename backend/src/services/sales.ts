@@ -69,7 +69,7 @@ const findSalesByProduct = async (
   user: UserType,
   name: string
 ): Promise<SalesType[]> => {
-  const product = await productService.getProductByName(user, name);
+  const product = await productService.getProductByName(name, user);
   const sales = await Sales.find({
     user: user.id,
     product: product.id,
@@ -103,6 +103,19 @@ const findSalesByBuyer = async (
       receiptId: sale.receiptId,
     };
   });
+};
+
+const getSaleById = async (id: string): Promise<SalesType> => {
+  const sale = await Sales.findById(id);
+  return {
+    id: sale._id.toString(),
+    product: sale.product.toString(),
+    buyer: sale.buyer,
+    date: sale.date,
+    quantity: sale.quantity,
+    totalPrice: sale.totalPrice,
+    receiptId: sale.receiptId,
+  };
 };
 
 const findSalesByDate = async (
@@ -205,6 +218,7 @@ export default {
   getTotalSalesByDate,
   correctSale,
   findSalesByBuyer,
+  getSaleById,
   findSalesByDate,
   findSalesByProduct,
 };

@@ -35,6 +35,25 @@ const getProductById = async (id: string): Promise<ProductType> => {
     stock: product.stock,
   };
 };
+const getProductByName = async (
+  name: string,
+  user: UserType
+): Promise<ProductType> => {
+  const product = await Product.findOne({ name: name, user: user.id });
+  if (!product) {
+    throw new Error("Product not found !");
+  }
+  return {
+    id: product._id.toString(),
+    name: product.name,
+    description: product.description,
+    size: product.size,
+    price: product.price,
+    cost: product.cost,
+    supplier: product.supplier,
+    stock: product.stock,
+  };
+};
 
 const newProduct = async (
   user: UserType,
@@ -96,6 +115,7 @@ const deleteProduct = async (id: string): Promise<ProductType> => {
 export default {
   getProducts,
   getProductById,
+  getProductByName,
   newProduct,
   updateProduct,
   deleteProduct,

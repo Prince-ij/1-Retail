@@ -278,6 +278,38 @@ router.get("/buyer/:name", userExtractor, async (req: reqHeader, res) => {
   const debts = await creditService.findDebtByBuyer(user, name);
   res.status(200).json(debts);
 });
+/**
+ * @swagger
+ * /api/credits/unique/{id}:
+ *   get:
+ *     summary: Get debt/credit by id
+ *     tags: [Credits]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         id: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: id of the debt
+ *     responses:
+ *       200:
+ *         description: credit entry for the specified buyer
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Credit'
+ *       401:
+ *         description: Unauthorized - Invalid or missing token
+ */
+router.get("/unique/:id", userExtractor, async (req: reqHeader, res) => {
+  const id = z.string().parse(req.params.id);
+  const debt = await creditService.findDebtById(id);
+  res.status(200).json(debt);
+});
 
 /**
  * @swagger

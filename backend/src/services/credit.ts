@@ -79,6 +79,20 @@ const findDebtByBuyer = async (
     };
   });
 };
+const findDebtById = async (id: string): Promise<CreditType> => {
+  const debt = await Credit.findById(id);
+  return {
+    id: debt._id.toString(),
+    product: debt.product.toString(),
+    date: debt.date,
+    quantity: debt.quantity,
+    totalDebt: debt.totalDebt,
+    status: debt.status,
+    receiptId: debt.receiptId,
+    buyer: debt.buyer,
+    amountPaid: debt.amountPaid,
+  };
+};
 
 const findDebtByDate = async (user: UserType, date: string) => {
   const day = new Date(date);
@@ -200,5 +214,6 @@ export default {
   findDebtByDate,
   correctDebt,
   findDebtByBuyer,
+  findDebtById,
   payDebt,
 };

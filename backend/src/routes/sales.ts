@@ -356,5 +356,37 @@ router.get("/product/:name", async (req: reqHeader, res) => {
   const sales = await saleService.findSalesByProduct(user, name);
   res.status(200).json(sales);
 });
+/**
+ * @swagger
+ * /api/sales/unique/{id}:
+ *   get:
+ *     summary: Get sales transaction by id
+ *     tags: [Sales]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         id: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: id of product to find
+ *     responses:
+ *       200:
+ *         description: unique sale
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Sales'
+ *       401:
+ *         description: Unauthorized - Invalid or missing token
+ */
+router.get("/unique/:id", async (req: reqHeader, res) => {
+  const id = z.string().parse(req.params.id);
+  const sale = await saleService.getSaleById(id);
+  res.status(200).json(sale);
+});
 
 export default router;
