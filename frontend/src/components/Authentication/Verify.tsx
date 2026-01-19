@@ -14,7 +14,7 @@ export const VerifyPage = () => {
         Account Created Successfully ✔
       </p>
       <p className="text-center mt-5 mb-5 text-warning display-5">
-        Check Your Email to Verify Your Account
+        Check Your Email to Verify Your Account or your spam folder
       </p>
     </Container>
   );
