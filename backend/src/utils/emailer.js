@@ -1,35 +1,36 @@
 import dotenv from "dotenv";
 dotenv.config();
-import logger from "./logger.js";
+
 import nodemailer from "nodemailer";
+import { MailtrapTransport } from "mailtrap";
+import logger from "./logger.js";
 
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 2525,
-  secure: false,
-  auth: {
-    user: process.env.BREVO_SMTP_USER,
-    pass: process.env.BREVO_SMTP_KEY,
-  },
-});
 
-// Verify SMTP connection (safe with Brevo)
-transporter.verify((error) => {
-  if (error) {
-    logger.error("1-Retail SMTP connection failed", error);
-  } else {
-    logger.info("1-Retail SMTP server ready (Brevo)");
-  }
-});
+const { MAILTRAP_API_TOKEN, MAIL_FROM } = process.env;
 
-export const sendVerifyMail = async (
-  email: string,
-  link: string,
-  name: string
-) => {
+if (!MAILTRAP_API_TOKEN) {
+  throw new Error("MAILTRAP_API_TOKEN is missing");
+}
+
+if (!MAIL_FROM) {
+  throw new Error("MAIL_FROM is missing");
+}
+
+
+const transporter = nodemailer.createTransport(
+  MailtrapTransport({
+    token: MAILTRAP_API_TOKEN,
+  })
+);
+
+
+export const sendVerifyMail = async (email, link, name) => {
   try {
     const info = await transporter.sendMail({
-      from: `"1-Retail" <${process.env.MAIL_FROM}>`,
+      from: {
+        address: MAIL_FROM,
+        name: "1-Retail",
+      },
       to: email,
       subject: "Verify your 1-Retail account",
       text: `Hello ${name},
@@ -64,10 +65,16 @@ If you did not create a 1-Retail account, please ignore this email.`,
   }
 };
 
-export const sendResetMail = async (email: string, link: string) => {
+/**
+ * Send password reset email
+ */
+export const sendResetMail = async (email, link) => {
   try {
     const info = await transporter.sendMail({
-      from: `"1-Retail" <${process.env.MAIL_FROM}>`,
+      from: {
+        address: MAIL_FROM,
+        name: "1-Retail",
+      },
       to: email,
       subject: "Reset your 1-Retail password",
       text: `You requested a password reset for your 1-Retail account.
