@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import creditService from "../../services/creditServices";
+import productService from "../../services/productServices";
 import type { DebtType } from "../../types";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
 
@@ -17,6 +18,8 @@ const formatCurrency = (amount: number) =>
 const CreditReceipt = () => {
   const { id } = useParams<{ id: string }>();
 
+
+
   const {
     data: debt,
     isLoading,
@@ -27,8 +30,16 @@ const CreditReceipt = () => {
     enabled: !!id,
   });
 
+    const productQuery = useQuery({
+      queryKey: ["product", debt?.product],
+      queryFn: () => productService.getProductById(debt?.product),
+      enabled: !!debt?.product,
+    });
+
   if (isLoading) return <p>Loading...</p>;
   if (isError || !debt) return <p>Credit not found.</p>;
+
+
 
   return (
     <Container
@@ -61,7 +72,11 @@ const CreditReceipt = () => {
           </thead>
           <tbody>
             <tr>
-              <td>{debt.product}</td>
+              <td>
+                {productQuery.isLoading
+                  ? "..."
+                  : productQuery.data?.name || debt.product}
+              </td>
               <td>{debt.quantity}</td>
               <td>{formatCurrency(debt.amountPaid)}</td>
               <td>{formatCurrency(debt.totalDebt)}</td>

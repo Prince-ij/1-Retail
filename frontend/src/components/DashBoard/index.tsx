@@ -43,12 +43,18 @@ const Dashboard = () => {
       saleServices.getProfitByDate(new Date().toISOString().split("T")[0]),
   });
   const totalDebts = useQuery({
-    queryKey: ["debts"],
+    queryKey: ["credits"],
     queryFn: creditServices.getDebts,
   });
 
   const uniqueDebtors = totalDebts.data
-    ? Array.from(new Set(totalDebts.data.map((d) => d.buyer && d.status !== "settled"))).length
+    ? Array.from(
+        new Set(
+          totalDebts.data
+            .filter((d) => d.status !== "settled")
+            .map((d) => d.buyer)
+        )
+      ).length
     : 0;
 
   const totalDebtAmount = useQuery({
